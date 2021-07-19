@@ -1,7 +1,15 @@
 import os
-from pathlib import Path
+import sys
 
 from setuptools import setup, find_packages
+
+# python setup.py sdist bdist_wheel
+
+PY3 = sys.version_info[0] >= 3
+if not PY3:
+    from pathlib2 import Path
+else:
+    from pathlib import Path
 
 if os.path.isdir("clipboard.js") and not os.path.islink(
     "sphinx_copybutton/_static/clipboard.min.js"
@@ -49,17 +57,24 @@ setup(
         ]
     },
     classifiers=[
+        "Development Status :: 5 - Production/Stable",
+        "Framework :: Sphinx :: Extension",
+        "Framework :: Sphinx",
         "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python :: 2",
+        "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
-        "Programming Language :: Python :: 3 :: Only",
+        "Topic :: Documentation",
+        "Topic :: Software Development :: Documentation",
     ],
-    python_requires=">=3.6",
-    install_requires=["sphinx>=1.8"],
-    extras_require={
-        "code_style": ["pre-commit==2.12.1"],
-    },
+    python_requires=">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*",
+    #install_requires=["sphinx>=1.8"],
+    #extras_require={
+    #    "code_style": ["pre-commit==2.12.1"],
+    #},
 )

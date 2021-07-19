@@ -1,8 +1,14 @@
 """A small sphinx extension to add "copy" buttons to code blocks."""
-from pathlib import Path
+import sys
 from sphinx.util import logging
 
-__version__ = "0.3.3"
+PY3 = sys.version_info[0] >= 3
+if PY3:
+    from pathlib import Path
+else:
+    from pathlib2 import Path
+
+__version__ = "10.3.5"
 
 logger = logging.getLogger(__name__)
 
